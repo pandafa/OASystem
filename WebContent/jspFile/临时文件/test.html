@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>流程模板编辑</title>
+    <!-- procedureModelEdit -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+	<div>123</div>
+	</div>
+	<div class="container">
+	<!--导航条开始-->
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">XXX 0A管理系统</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li>
+	      		<a href="#">
+	      			<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+	      			<span class="badge">4</span>
+	      		</a>
+	      	</li>
+	        <li><a href="#">注销</a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	<!--导航条结束-->
+	</div>
+	<div class="container">
+	<div class="row">
+		<!--<div class="col-md-3">
+			<div class="list-group">
+			  <a href="#" class="list-group-item disabled">123</a>
+			  <a href="#" class="list-group-item">
+			  	
+			  </a>
+			</div>
+		</div>-->
+		<div class="col-md-3">
+			<ul class="list-group">
+			  <!-- 流程开始 procedure-->
+			  <li class="list-group-item active">流程审批</li>
+			  <li class="list-group-item list-group-item- btn ">流程提交</li>
+			  <li class="list-group-item list-group-item- btn ">我的流程</li>
+			  <li class="list-group-item list-group-item-success btn ">流程模板</li>
+			  <li class="list-group-item list-group-item- btn ">需处理流程<span class="badge">4</span></li>
+			  <!--流程结束-->
+			  <!--文件开始-->
+			  <li class="list-group-item active">文件中心</li>
+			  <li class="list-group-item list-group-item- btn ">文件仓库</li>
+			  <!--文件结束-->
+			  <!--消息开始-->
+			  <li class="list-group-item active">消息中心</li>
+			  <li class="list-group-item list-group-item- btn ">消息广场<span class="badge">4</span></li>
+			  <li class="list-group-item list-group-item- btn ">个人消息</li>
+			  <li class="list-group-item list-group-item- btn ">发送消息</li>
+			  <li class="list-group-item list-group-item- btn ">发布公告</li>
+			  <!--消息结束-->
+			  <!--用户中心开始-->
+			  <li class="list-group-item active">用户中心</li>
+			  <li class="list-group-item list-group-item- btn ">密码修改</li>
+			  <li class="list-group-item list-group-item- btn ">个人信息</li>
+			  <!--用户中心结束-->
+			  <!--管理中心开始-->
+			  <li class="list-group-item active">管理中心</li>
+			  <li class="list-group-item list-group-item- btn ">用户管理</li>
+			  <li class="list-group-item list-group-item- btn ">群组管理</li>
+			  <li class="list-group-item list-group-item- btn ">添加新用户</li>
+			  <!--管理中心结束-->
+			</ul>
+		</div>
+		<div class="col-md-9">
+			<!-- +----------------------------------+ -->
+            <div class="container-fluid">
+            	<div class="panel panel-primary">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">流程模板编辑</div>
+				  <div class="panel-body">
+				  	<!--表单开始-->
+				  	<form class="form-horizontal">
+				  	  <!--流程名称-->
+					  <div class="form-group">
+					    <label for="pname" class="col-sm-2 control-label">流程名称</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="pname" placeholder="Email">
+					    </div>
+					  </div>
+					  <!-- 流程简介-->
+					  <div class="form-group">
+					    <label for="pdescribe" class="col-sm-2 control-label">流程简介</label>
+					    <div class="col-sm-10">
+					    	<textarea class="form-control" id="pdescribe" placeholder="Email。最多200个字符" rows="5" maxlength="200"></textarea>
+					    </div>
+					  </div>
+					  <!-- 表格题头 -->
+					  <div class="form-group">
+					    <label for="ptableTitle" class="col-sm-2 control-label">表格题头</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="ptableTitle" placeholder="表格的题目">
+					    </div>
+					  </div>
+					  <!--项目名称-->
+					  <div class="form-group">
+					    <label for="pprocedureTitle" class="col-sm-2 control-label">项目名称</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="pprocedureTitle" placeholder="填写名称的标题">
+					    </div>
+					  </div>
+					  <hr />
+					  <!--填选1-->
+					  <div class="form-group">
+					  	<p>填选项</p>
+					  	<div class="container-fluid">
+					  	<table class="table table-striped">
+					  		<tr>
+					  			<th>序号</th>
+					  			<th>填选名称</th>
+					  			<th>是否必填</th>
+					  			<th>操作</th>
+					  		</tr>
+					  		<tr>
+					  			<td>1</td>
+					  			<td>
+					  				<input type="text" id="pinputName1" placeholder="填写1名称的标题">
+					  			</td>
+					  			<td>
+					  				<select id="pinputName1">
+							      		<option value="1">是</option>
+							      		<option value="0">否</option>
+							        </select>
+					  			</td>
+					  			<td>
+					  				<button class="btn btn-danger">
+							    		<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">&nbsp;删除</span>
+							    	</button>
+					  			</td>
+					  		</tr>
+					  		<tr>
+					  			<td>2</td>
+					  			<td>
+					  				<input type="text" id="pinputName2" placeholder="填写2名称的标题">
+					  			</td>
+					  			<td>
+					  				<select id="pinputName1">
+							      		<option value="1">是</option>
+							      		<option value="0">否</option>
+							        </select>
+					  			</td>
+					  			<td>
+					  				<button class="btn btn-danger">
+							    		<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">&nbsp;删除</span>
+							    	</button>
+					  			</td>
+					  		</tr>
+					  	</table>
+					  	</div>
+					  </div>
+					  
+					  <!-- 流程审批人 -->
+					  <div class="form-group">
+					  	<p>审批过程</p>
+					  	<div class="container-fluid">
+					  	<table class="table table-striped">
+					  		<tr>
+					  			<th>过程顺序</th>
+					  			<th>过程名称</th>
+					  			<th>审批部门</th>
+					  			<th>审批分组</th>
+					  			<th>审批人</th>
+					  			<th>操作</th>
+					  		</tr>
+					  		<tr>
+					  			<td>1</td>
+					  			<td>
+					  				<input type="text" id="pprocessName1" placeholder="填写过程1的标题">
+					  			</td>
+					  			<td>
+					  				<select id="ppart1">
+					  					<option value="0">——请选择——</option>
+					  					<option value="1">部门1</option>
+					  					<option value="2">部门2</option>
+					  				</select>
+					  			</td>
+					  			<td>
+					  				<select id="pgroup1">
+					  					<option value="0">——请选择——</option>
+					  					<option value="1">部门1</option>
+					  					<option value="2">部门2</option>
+					  				</select>
+					  			</td>
+					  			<td>
+					  				<select id="pperson1">
+					  					<option value="0">——请选择——</option>
+					  					<option value="1">部门1</option>
+					  					<option value="2">部门2</option>
+					  				</select>
+					  			</td>
+					  			<td>
+					  				<button class="btn btn-danger">
+							    		<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">&nbsp;删除</span>
+							    	</button>
+					  			</td>
+					  		</tr>
+					  	</table>
+					  	</div>
+					  </div>
+					  
+					  
+					  
+					  <div class="form-group">
+					  	<div class="col-sm-offset-4 col-sm-4">
+					  		<button class="btn btn-success btn-block">
+					    		<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">&nbsp;添加填选项</span>
+					    	</button>
+					  	</div>
+					  </div>
+					  <hr />
+					  
+					  
+					  
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+					    <div class="col-sm-10">
+					      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="col-sm-offset-2 col-sm-10">
+					      <div class="checkbox">
+					        <label>
+					          <input type="checkbox"> Remember me
+					        </label>
+					      </div>
+					    </div>
+					  </div>
+					  
+					</form>
+					<!--表单结束-->
+				  </div>
+				
+				  <!--底部开始-->
+				  <div class="panel-footer">
+				  	 底部
+				  </div>
+				  <!--底部结束-->
+				</div>
+				
+            </div>
+            <!-- +----------------------------------+ -->
+		</div>
+	</div>
+	</div>
+	
+	<script src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
