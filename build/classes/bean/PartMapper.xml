@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.PartMapper">
+
+ 
+ 	<select id="getPartIdByName" resultType="int">
+ 		select id from part where name = #{name}
+ 	</select>
+ 
+ 	<insert id="addNewPart" parameterType="Part" useGeneratedKeys="true"  keyProperty="id">
+ 		insert into part (name,createPerson,createDate) values (#{name},#{createPerson},
+ 		#{createDate,javaType=java.util.Date,jdbcType=TIMESTAMP})
+ 	</insert>
+ 
+ 	<delete id="delPartById">
+ 		delete from part where id = #{id}
+ 	</delete>
+ 
+ 	<select id="getPartsAllInfoByNumber" resultType="Part">
+ 		select * from part limit #{begin},#{end}
+ 	</select>
+	<select id="allPartsCount" resultType="int">
+		select count(*) from part
+	</select>
+ 	<select id="getAllPartsAndNames" resultType="map">
+ 		select id,name from part
+ 	</select>
+ 	<select id="getNameById" resultType="String">
+ 		select name from part where id = #{id}
+ 	</select>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</mapper>

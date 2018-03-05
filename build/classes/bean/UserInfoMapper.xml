@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.UserInfoMapper">
+	<resultMap id="UserInfoRMap" type="UserInfo">
+		<result property="group" column="ggroup"></result>
+	</resultMap>
+	
+	<select id="getAllUserNameAndJobIdOfGroup" resultType="map">
+		select name,jobId,kind,post from user_info where part = #{part} and ggroup = #{group}
+	</select>
+	
+	<update id="changeUserInfoAllByJobIdWithWhere" parameterType="UserInfo">
+		update user_info set cardId = #{cardId} ,name = #{name} ,sex = #{sex} ,
+		part = #{part} ,ggroup = #{group} ,post = #{post} ,
+		errorTimes = #{errorTimes} ,tel = #{tel} ,email = #{email} ,addr = #{addr} ,
+		joinTime = #{joinTime,javaType=java.util.Date,jdbcType=TIMESTAMP} where jobId = #{jobId}
+	</update>
+	
+	<update id="changeUserInfoAllByJobIdNoWhere" parameterType="UserInfo">
+		update user_info set cardId = #{cardId} ,name = #{name} ,sex = #{sex} ,post = #{post} ,
+		errorTimes = #{errorTimes} ,tel = #{tel} ,email = #{email} ,addr = #{addr} 
+		where jobId = #{jobId}
+	</update>
+	
+	<select id="findByJobId" resultMap="UserInfoRMap">
+		select * from user_info where jobId = #{jobId}
+	</select>
+	
+	<select id="getUsersInfoOfAllByPageLimit" resultType="map">
+		select jobId,cardId,name,sex,part,ggroup,post from user_info limit #{begin},#{end}
+	</select>
+	
+	<select id="getUsersInfoOfPartByPageLimit" resultType="map">
+		select jobId,cardId,name,sex,part,ggroup,post from user_info where part = #{partId} limit #{begin},#{end}
+	</select>
+	
+	<select id="getMemberNumbersOfAll"	resultType="int">
+		select count(*) from user_info
+	</select>
+	
+	<select id="getMemberNumbersOfPart"	resultType="int">
+		select count(*) from user_info where part = #{partId}
+	</select>
+	
+	
+	<update id="changeUserBaseInfoWithTime">
+		update user_info set part = #{part} ,ggroup = #{group} ,kind = #{kind} ,post = {post} ,
+		joinTime=#{joinTime,javaType=java.util.Date,jdbcType=TIMESTAMP} where jobId = #{jobId}
+	</update>
+	
+	<update id="changeUserBaseInfoNoTime">
+		update user_info set kind = #{kind},post = #{post}  where jobId = #{jobId}
+	</update>
+	
+	<select id="getUserGroupByJobId" resultType="int">
+		select ggroup from user_info where jobId = #{jobId}
+	</select>
+	<select id="getUserPartByJobId" resultType="int">
+		select part from user_info where jobId = #{jobId}
+	</select>
+	<select id="getUserNameByJobId" resultType="String">
+		select name from user_info where jobId = #{jobId}
+	</select>
+	<select id="getUserKindByJobId" resultType="int">
+		select kind from user_info where jobId = #{jobId}
+	</select>
+	<select id="getUserPasswordByJobId" resultType="String">
+		select password from user_info where jobId = #{jobId}
+	</select>
+	<select id="getUserStatusByJobId" resultType="int">
+		select status from user_info where jobId = #{jobId}
+	</select>
+	<select id="getUserPasawordErrorTimes" resultType="int">
+		select errorTimes from user_info where jobId = #{jobId}
+	</select>
+	
+	<insert id="addNewUser" parameterType="UserInfo">
+		insert into user_info (jobId,cardId,name,sex,part,ggroup,kind,
+		password,joinTime,status,errorTimes,post) values 
+		(#{jobId},#{cardId},#{name},#{sex},#{part},#{group},#{kind},
+		 #{password},#{joinTime,javaType=java.util.Date,jdbcType=TIMESTAMP},#{status},#{errorTimes},#{post})
+	</insert>
+	
+	<select id="hasUserByJobId" resultType="int">
+		select count(*) from user_info where jobId = #{jobId}
+	</select>
+	
+	<select id="getUserInfoByJobIdToMap" resultType="map">
+		select * from user_info where jobId = #{jobId}
+	</select>
+	
+	<update id="changePassword">
+		update user_info set password = #{password} where jobId = #{jobId}
+	</update>
+	
+	<update id="changeMyPersonInfoByJobId">
+		update user_info set tel = #{tel} ,addr = #{addr} ,email = #{email} where jobId = #{jobId}
+	</update>
+	
+	<select id="getMemberNumbersOfGroup" resultType="int">
+		select count(*) from user_info where ggroup = #{groupId} and part = #{partId}
+	</select>
+	
+	
+	<select id="findUsersGroupOfGroupId" resultType="UserInfo">
+		select * from user_info where part = #{partId} and ggroup = #{groupId} limit #{begin},#{end}
+	</select>
+	
+	<select id="findByJobIdAndPassword" resultType="UserInfo">
+		select * from user_info where jobId = #{jobId} and password = #{password}
+	</select>
+	
+	<update id="changeUserStatusByJobId">
+		update user_info set status = #{status} where jobId = #{jobId}
+	</update>
+	<update id="changeUserPasswordErrorTimes">
+		update user_info set errorTimes = #{times} where jobId = #{jobId}
+	</update>
+	
+	<select id="getAllUserJobId" resultType="String">
+		select jobId from user_info
+	</select>
+	<select id="getAllUserJobIdOfPart" resultType="String">
+		select jobId from user_info where part = #{partId}
+	</select>
+	<select id="getAllUserJobIdOfGroup" resultType="String">
+		select jobId from user_info where part = #{partId} and ggroup = #{groupId}
+	</select>
+
+</mapper>

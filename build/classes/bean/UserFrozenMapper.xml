@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.UserFrozenMapper">
+
+	<insert id="changeUserStatusToFrozenByJobId">
+		replace into user_frozen (jobId,recoveryDateLong) values (#{jobId},#{times})
+	</insert>
+	
+	<delete id="delUserFromFrozenByJobId">
+		delete from user_frozen where jobId = #{jobId}
+	</delete>
+	<select id="getNeedOutOfFrozenNumber" resultType="int">
+		select count(*) from user_frozen where recoveryDateLong &lt;= #{nowTime}
+	</select>
+	<select id="getNeedOutOfFrozenJobId" resultType="String">
+		select jobId from user_frozen order by recoveryDateLong asc limit 0,1
+	</select>
+
+</mapper>

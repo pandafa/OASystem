@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 	<settings>
+	  <setting name="defaultExecutorType" value="SIMPLE"/>
+	</settings> -->
+
+	<!-- 在映射文件中，可以直接使用 Course 表示entity.Course（即起别名） -->
+	<typeAliases>
+		<typeAlias type="bean.FileDepot" alias="FileDepot" />
+		<typeAlias type="bean.Group" alias="Group" />
+		<typeAlias type="bean.Message" alias="Message" />
+		<typeAlias type="bean.MessageKind" alias="MessageKind" />
+		<typeAlias type="bean.ModelOption" alias="ModelOption" />
+		<typeAlias type="bean.ModelProcedure" alias="ModelProcedure" />
+		<typeAlias type="bean.ModelShen" alias="ModelShen" />
+		<typeAlias type="bean.Part" alias="Part" />
+		<typeAlias type="bean.ProcedureOption" alias="ProcedureOption" />
+		<typeAlias type="bean.ProcedureShen" alias="ProcedureShen" />
+		<typeAlias type="bean.ProcedureSubmit" alias="ProcedureSubmit" />
+		<typeAlias type="bean.Remind" alias="Remind" />
+		<typeAlias type="bean.UserInfo" alias="UserInfo" />
+		<typeAlias type="bean.UserKind" alias="UserKind" />
+	</typeAliases>
+	
+	<!-- 类与表的映射文件 -->
+	<mappers>
+		<mapper resource="bean/FileDepotMapper.xml" />
+		<mapper resource="bean/GroupMapper.xml" />
+		<mapper resource="bean/MessageMapper.xml" /> <!-- 11 -->
+		<mapper resource="bean/MessageKindMapper.xml" />  <!-- 没有有的 -->
+		<mapper resource="bean/ModelOptionMapper.xml" />
+		<mapper resource="bean/ModelProcedureMapper.xml" />
+		<mapper resource="bean/ModelShenMapper.xml" />
+		<mapper resource="bean/PartMapper.xml" />
+		<mapper resource="bean/ProcedureOptionMapper.xml" />
+		<mapper resource="bean/ProcedureShenMapper.xml" />  <!-- 注意！！！ -->
+		<mapper resource="bean/ProcedureSubmitMapper.xml" />
+		<mapper resource="bean/RemindMapper.xml" />
+		<mapper resource="bean/UserInfoMapper.xml" />
+		<mapper resource="bean/UserKindMapper.xml" />
+		<mapper resource="bean/UserFrozenMapper.xml" />
+	</mappers>
+	
+</configuration>

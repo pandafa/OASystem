@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.ProcedureSubmitMapper">
+
+	<insert id="addNewSubmit" parameterType="ProcedureSubmit" useGeneratedKeys="true" keyProperty="id">
+		insert into procedure_submit (name,projectName,projectNameTitle,createDate,
+		createPerson,status,partName,groupName,showFileName,fileName,remark) 
+		value (#{name},#{projectName},#{projectNameTitle},#{createDate,javaType=java.util.Date,jdbcType=TIMESTAMP},
+		#{createPerson},#{status},#{partName},#{groupName},#{showFileName},#{fileName},#{remark})
+	</insert>
+
+	<select id="getNumberOfSubmitByCreatePerson" resultType="int">
+		select count(*) from procedure_submit where createPerson = #{createPerson}
+	</select>
+
+	<select id="getAllMyProcedureSimpleFromNumToNum" resultType="map">
+		select id,name,projectNameTitle,createDate,createPerson,status 
+		from procedure_submit 
+		where createPerson = #{createPerson} order by createDate desc limit #{begin},#{end}
+	</select>
+
+	<select id="findById" resultType="ProcedureSubmit">
+		select * from procedure_submit where id = #{id}
+	</select>
+
+	<select id="getMainInfoById" resultType="map">
+		select id,name,projectName,createDate,createPerson from procedure_submit where id = #{id}
+	</select>
+
+	<select id="getCreatePerson" resultType="String">
+		select createPerson from procedure_submit where id = #{id}
+	</select>
+
+	<update id="updateStatus">
+		update procedure_submit set status = #{status} where id = #{id}
+	</update>
+	
+	<select id="getNumberByUserJobIdAndWork" resultType="int">
+		select count(*) from procedure_shen where userJobId = #{userJobId} and work = #{work}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

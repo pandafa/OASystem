@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.ProcedureOptionMapper">
+	<resultMap id="ProcedureOptionRMap" type="ProcedureOption">
+		<result property="order" column="oorder"></result>
+	</resultMap>
+
+	<insert id="addNewOption" parameterType="ProcedureOption">
+		insert into procedure_option (procedureId,title,content,oorder) 
+		values(#{procedureId},#{title},#{content},#{order})
+	</insert>
+
+	<select id="findBySubmitId" resultMap="ProcedureOptionRMap">
+		select * from procedure_option where procedureId = #{submitId} order by oorder asc
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

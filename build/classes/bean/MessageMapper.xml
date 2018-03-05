@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.MessageMapper">
+	<select id="findById" resultType="Message">
+		select * from message where id = #{id}
+	</select>
+	
+	<select id="getMessageOfPartFromNumToNum" resultType="Message">
+		select * from message where kind = #{kind} and acceptPart = #{partId} ORDER BY sendDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="getMessageOfCompanyFromNumToNum" resultType="Message">
+		select * from message where kind = #{kind} ORDER BY sendDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="getMessageOfGroupFromNumToNum" resultType="Message">
+		select * from message where kind = #{kind} and acceptPart = #{part} and acceptGroup = #{group}
+		ORDER BY sendDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="getNoticeOfPartNumberByJobId" resultType="int">
+		select count(*) from message where kind = 4 and acceptPart = #{part}
+	</select>
+	
+	<select id="getNoticeOfCompanyNumberByJobId" resultType="int">
+		select count(*) from message where kind = 2
+	</select>
+	
+	<select id="getNoticeOfGroupNumberByJobId" resultType="int">
+		select count(*) from message where kind = 7 and acceptPart = #{part} and acceptGroup = #{group}
+	</select>
+	
+	<!-- 2-2 -->
+	<select id="getAllMessageInfoByJobId" resultType="Message">
+		select * from (
+		(select * from message where (kind = 1 or kind = 8) and acceptPerson = #{jobId})
+		UNION
+		(select * from message where kind = 3) 
+		UNION
+		(select * from message where kind = 5 and acceptPart = #{part} and acceptGroup is null) 
+		UNION
+		(select * from message where kind = 6 and acceptGroup = #{group} and acceptPart = #{part}) 
+		)as A ORDER BY sendDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="getAllMessageByJobId" resultType="int">
+		select count(*) from (
+		(select * from message where (kind = 1 or kind = 8) and acceptPerson = #{jobId})
+		UNION
+		(select * from message where kind = 3) 
+		UNION
+		(select * from message where kind = 5 and acceptPart = #{part} and acceptGroup is null) 
+		UNION
+		(select * from message where kind = 6 and acceptGroup = #{group} and acceptPart = #{part}) 
+		)as A ORDER BY sendDate desc
+	</select>
+	
+	
+	<insert id="addNewMessageToAllPerson" useGeneratedKeys="true" keyProperty="id">
+		insert into message (title,kind,sendPerson,sendDate,content) 
+		values(#{title},#{kind},#{sendPerson},#{sendDate,javaType=java.util.Date,jdbcType=TIMESTAMP},#{content})
+	</insert>
+	
+	<insert id="addNewMessageToPart" useGeneratedKeys="true" keyProperty="id">
+		insert into message (title,kind,sendPerson,sendDate,content,acceptPart) 
+		values(#{title},#{kind},#{sendPerson},#{sendDate,javaType=java.util.Date,jdbcType=TIMESTAMP},
+		#{content},#{acceptPart})
+	</insert>
+	
+	<insert id="addNewMessageToPerson" useGeneratedKeys="true" keyProperty="id">
+		insert into message (title,kind,sendPerson,sendDate,content,acceptPerson)
+		values(#{title},#{kind},#{sendPerson},#{sendDate,javaType=java.util.Date,jdbcType=TIMESTAMP},
+		#{content},#{acceptPerson})
+	</insert>
+	
+	<insert id="addNewMessageToGroup" useGeneratedKeys="true" keyProperty="id">
+		insert into message (title,kind,sendPerson,sendDate,content,acceptPart,acceptGroup)
+		values(#{title},#{kind},#{sendPerson},#{sendDate,javaType=java.util.Date,jdbcType=TIMESTAMP},
+		#{content},#{acceptPart},#{acceptGroup})
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
