@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.FileDepotMapper">
+	<resultMap id="fileDepotRMap" type="FileDepot">
+		<result property="group" column="ggroup"></result>
+		<result property="source" column="source"></result>
+	</resultMap>
+ 
+ 
+ 
+	<select id="findById" resultMap="fileDepotRMap">
+	   select * from file_depot where file_depot.id = #{id}
+	</select>
+	
+	<select id="fileOfCompanyNumber" resultType="int">
+		select count(*) from file_depot where source = #{source}
+	</select>
+	<select id="fileFromNumToNumOfCompany" resultMap="fileDepotRMap">
+		select * from file_depot where source = #{source} order by updateDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="fileOfPartNumber" resultType="int">
+		select count(*) from file_depot where source = #{source} and part = #{part}
+	</select>
+	<select id="fileFromNumToNumOfPart" resultMap="fileDepotRMap">
+		select * from file_depot where source = #{source} and part = #{part} order by updateDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="fileOfAllPartNumber" resultType="int">
+		select count(*) from file_depot where source = #{source}
+	</select>
+	<select id="fileListFromNumToNumOfAllPart" resultMap="fileDepotRMap">
+		select * from file_depot where source = #{source} order by updateDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="fileOfGroupNumber" resultType="int">
+		select count(*) from file_depot where source = #{source} and part = #{part} and ggroup = #{group}
+	</select>
+	<select id="fileListFromNumToNumOfGroup" resultMap="fileDepotRMap">
+		select * from file_depot where source = #{source} and part = #{part} and ggroup = #{group} order by updateDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="fileOfAllGroupNumber" resultType="int">
+		select count(*) from file_depot where source = #{source} and part = #{part} 
+	</select>
+	<select id="fileListFromNumToNumOfAllGroup" resultMap="fileDepotRMap">
+		select * from file_depot where source = #{source} and part = #{part} order by updateDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="fileOfAllPartAndGroupNumber" resultType="int">
+		select count(*) from file_depot where source = #{source}
+	</select>
+	<select id="fileListFromNumToNumOfAllPartAndGroup" resultMap="fileDepotRMap">
+		select * from file_depot where source = #{source} order by updateDate desc limit #{begin},#{end}
+	</select>
+	
+	<insert id="addNewFile" useGeneratedKeys="true" keyProperty="id">
+		insert into file_depot (showFileName,realFileName,updateDate,size,source,ggroup,part,createPerson) 
+		values (#{showFileName},#{realFileName},#{updateDate,javaType=java.util.Date,jdbcType=TIMESTAMP},#{size},#{source},#{group},#{part},
+		#{createPerson})
+	</insert>
+	
+	<delete id="delFileById">
+		delete from file_depot where id = #{id}
+	</delete>
+	
+</mapper>

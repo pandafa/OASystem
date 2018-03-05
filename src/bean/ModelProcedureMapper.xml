@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.ModelProcedureMapper">
+	<resultMap id="ModelProcedureRMap" type="ModelProcedure">
+		<result property="group" column="ggroup"></result>
+		<result property="source" column="source"></result>
+	</resultMap>
+	
+	<insert id="addNewProcedure" parameterType="ModelProcedure" useGeneratedKeys="true" keyProperty="id">
+		insert into model_procedure (name,introduction,illustrate,remark,title,projectName,
+		enclosure,createDate,createPerson) values 
+		(#{name},#{introduction},#{illustrate},#{remark},#{title},#{projectName},#{enclosure},
+		#{createDate,javaType=java.util.Date,jdbcType=TIMESTAMP},#{createPerson})
+	</insert>
+	
+	<select id="getAllModelNumber" resultType="int">
+		select count(*) from model_procedure
+	</select>
+	
+	<select id="getAllModelFromNumToNum" resultType="map">
+		select id,name,introduction,createDate,createPerson 
+		from model_procedure order by createDate desc limit #{begin},#{end}
+	</select>
+	
+	<select id="findById" resultMap="ModelProcedureRMap">
+		select * from model_procedure where id = #{id}
+	</select>
+	
+	<update id="updateModel" parameterType="ModelProcedure">
+		update model_procedure set name=#{name},introduction=#{introduction},illustrate=#{illustrate},remark=#{remark},
+		title=#{title},projectName=#{projectName},enclosure=#{enclosure} where id = #{id}
+	</update>
+	
+	<delete id="delById">
+		delete from model_procedure where id = #{id}
+	</delete>
+	
+	<select id="getUserOfProcedureWhoCreateById" resultType="String">
+		select createPerson from model_procedure where id = #{id}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

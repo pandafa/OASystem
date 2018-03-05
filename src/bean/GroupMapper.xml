@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.GroupMapper">
+	<resultMap id="fileDepotRMap" type="FileDepot">
+		<result property="group" column="ggroup"></result>
+	</resultMap>
+
+	<select id="getAllGroupsOfPartNameAndId" resultType="map">
+	   select id,name from ggroup where partId = #{partId}
+	</select>
+	
+	<select id="getGroupByName" resultType="int">
+		select id from ggroup where partId = #{partId} and name = #{name}
+	</select>
+	
+	<insert id="addGroup">
+		insert into ggroup (partId,name,createPerson,createDate) values (#{partId},#{name},#{person},
+		#{date,javaType=java.util.Date,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<select id="getNameById" resultType="String">
+		select name from ggroup where id = #{id} and partId = #{partId}
+	</select>
+	
+	<delete id="delGroup">
+		delete from ggroup where id = #{id} and partId = #{partId}
+	</delete>
+
+	<select id="getMemberNumbersOfGroup" resultType="int">
+		select count(*) from user_info where ggroup = #{groupId} and part = #{partId}
+	</select>
+	
+	<select id="getGroupsOfPartAllInfoByNumber" resultType="Group">
+		select * from ggroup where partId = #{id} limit #{begin},#{end}
+	</select>
+	
+	<select id="allGroupsCount" resultType="int">
+		select count(*) from ggroup where partId = #{partId}
+	</select>
+	
+	<delete id="delGroupByPartIdAndName">
+		delete from ggroup where partId = #{partId} and name = #{name}
+	</delete>
+	
+	<delete id="delAllGroupsByPartId">
+		delete from ggroup where partId = #{partId}
+	</delete>
+	
+</mapper>

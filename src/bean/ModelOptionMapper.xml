@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.ModelOptionMapper">
+	<resultMap id="ModelOptionRMap" type="ModelOption">
+		<result property="order" column="oorder"></result>
+	</resultMap>
+	
+	<insert id="addNewOption" parameterType="ModelOption">
+		insert into model_option (modelId,name,oorder,must) values(#{modelId},#{name},#{order},#{must})
+	</insert>
+
+	<select id="getOptionsByProcedureId" resultMap="ModelOptionRMap">
+		select * from model_option where modelId = #{modelId} order by oorder asc
+	</select>
+
+	<select id="getNumberOfOneModel" resultType="int">
+		select count(*) from model_option where modelId = #{modelId}
+	</select>
+
+	<delete id="delAllOptionsByModelId">
+		delete from model_option where modelId = #{modelId}
+	</delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.RemindMapper">
+	<!-- <resultMap id="fileDepotRMap" type="FileDepot">
+		<result property="group" column="ggroup"></result>
+		<result property="source" column="source"></result>
+	</resultMap> -->
+
+	<insert id="addRemind">
+		insert into remind (id,remindId,isMsg) values (#{msgId},#{remindId},#{isMsg})
+	</insert>
+	
+	<select id="hasThisRemind" resultType="int">
+		select count(*) from remind where id= #{msgId} and remindId = #{remindId} and isMsg = #{isMsg}
+	</select>
+	
+	<delete id="delRemindById">
+		delete from remind where id= #{msgId} and remindId = #{remindId} and isMsg = #{isMsg}
+	</delete>
+	
+	<select id="getNeedToRemindNumber" resultType="int">
+		select count(*) from remind where isMsg = #{isMsg} and remindId = #{remindId}
+	</select>
+	
+</mapper>

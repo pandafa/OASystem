@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD 
+ Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<!-- TIMESTAMP -->
+<!-- namespace为接口的名字 -->
+<mapper namespace="mapper.ProcedureShenMapper">
+	<resultMap id="ProcedureShenRMap" type="ProcedureShen">
+		<result property="order" column="oorder"></result>
+	</resultMap>
+
+	<insert id="addNewShen" parameterType="ProcedureShen">
+		insert into procedure_shen (procedureId,userGroup,userPart,userJobId,userName,
+		oorder,work,name)  values(#{procedureId},#{userGroup},#{userPart},#{userJobId},#{userName},
+		#{order},#{work},#{name})
+	</insert>
+
+	<select id="findBySubmitId" resultMap="ProcedureShenRMap">
+		select * from procedure_shen   where procedureId = #{submitId} order by oorder asc
+	</select>
+
+	<select id="getAllNeedToDealNumber" resultType="int">
+		select count(*) from procedure_shen where work = 2 and userJobId = #{userJobId}
+	</select>
+
+
+	<select id="getNeedDealIdsByJobIdFromNumberToNumber" resultType="map">
+		select procedureId,oorder from procedure_shen where work = 2 
+		and userJobId = #{userJobId} order by procedureId asc 
+		limit #{begin},#{end}
+	</select>
+
+
+	<select id="getUpdateTime" resultType="java.sql.Timestamp">
+		select time from procedure_shen where procedureId = #{procedureId} and oorder = #{order}
+	</select>
+
+	<select id="getDealPersonByIds" resultType="String">
+		select userJobId from procedure_shen where id = #{id} and procedureId = #{procedureId}
+	</select>
+	<select id="getOrderByIds" resultType="int">
+		select oorder from procedure_shen where id = #{id} and procedureId = #{procedureId}
+	</select>
+	<update id="updateAllByIds" parameterType="ProcedureShen">
+		update procedure_shen set content=#{content},time=#{time,javaType=java.util.Date,jdbcType=TIMESTAMP},
+		pass=#{pass},work=#{work} where id=#{id} and procedureId=#{procedureId}
+	</update>
+	<select id="getJobIdByOrderAndProcedureId" resultType="String">
+		select userJobId from procedure_shen where oorder = #{order} and procedureId = #{procedureId}
+	</select>
+
+	<select id="getHasThisOrderOfSubmit" resultType="int">
+		select count(*) from procedure_shen where oorder = #{order} and procedureId = #{procedureId}
+	</select>
+
+	<update id="updateWork">
+		update procedure_shen set work = #{work} where oorder = #{order} and procedureId = #{procedureId}
+	</update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
